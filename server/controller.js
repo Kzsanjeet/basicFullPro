@@ -1,5 +1,10 @@
 const UserRegister = require("./registerSchema")
 
+const show = (req,res)=>{
+    res.status(200).json({
+        message:"register here"
+    })
+}
 
 const register =  async(req,res)=>{
     try{
@@ -31,4 +36,4 @@ const register =  async(req,res)=>{
 }
 
 
-module.exports = register
+module.exports = {show,register}
