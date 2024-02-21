@@ -8,7 +8,7 @@ const show = (req,res)=>{
 
 const register =  async(req,res)=>{
     try{
-        const{firstName,lastName,email,password,phoneNumber} = req.body // collecting data from users
+        const{firstName,email,password} = req.body // collecting data from users
 
         const user = await UserRegister.create({
             firstName: firstName,

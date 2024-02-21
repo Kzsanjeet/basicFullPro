@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = require("./route")
 const connectDb = require("./dbConnection")
+const cors = require("cors")
 
 require( "dotenv").config()  // To access the environment variable
 
@@ -10,19 +11,11 @@ port = 4000;
 
 connectDb()
 
-// if(connectDb()){
-//     console.log("It is connected")
-// }else{   
-//     console.log("Not connected")
-// }
 app.use(express.json())
-app.use('/register',router)
+app.use(cors( {origin: true} ));   
+app.use('/',router)
 
-app.post('/',(req,res)=>{
-    res.status(200).json({
-        message:"registered"
-    })
-})
+
 
 app.get("/",(req,res)=>{
     res.send("Hello World!");
