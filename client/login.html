@@ -24,9 +24,40 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit" id="login">Login</button>
         </form>
         <p>Don't have an account? <a href="register.html">Register here</a>.</p>
     </div>
+    <script>
+        const login = document.getElementById("login")
+        const logUser = async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+    
+            try {
+                const resp = await fetch("http://localhost:4000/login", {
+                    headers: { "Content-Type": "application/json" },
+                    method: "POST",
+                    body: JSON.stringify({
+                        email:username ,
+                        password: password
+                    })
+                });
+                
+                if (resp.ok) {
+                    console.log("login successful.");
+                } else {
+                    console.error("Login failed:", resp.statusText);
+                }
+            } catch (err) {
+                console.error("Error:", err);
+            }
+        }
+
+        login.addEventListener("click",logUser)
+
+    </script>
 </body>
 </html>
